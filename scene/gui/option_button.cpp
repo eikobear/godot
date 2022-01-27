@@ -156,7 +156,7 @@ void OptionButton::_get_property_list(List<PropertyInfo> *p_list) const {
 		pi.usage &= ~(!popup->is_item_checked(i) ? PROPERTY_USAGE_STORAGE : 0);
 		p_list->push_back(pi);
 
-		pi = PropertyInfo(Variant::INT, vformat("popup/item_%d/id", i), PROPERTY_HINT_RANGE, "1,10,1,or_greater");
+		pi = PropertyInfo(Variant::INT, vformat("popup/item_%d/id", i), PROPERTY_HINT_RANGE, "0,10,1,or_greater");
 		p_list->push_back(pi);
 
 		pi = PropertyInfo(Variant::BOOL, vformat("popup/item_%d/disabled", i));
@@ -236,6 +236,10 @@ Ref<Texture2D> OptionButton::get_item_icon(int p_idx) const {
 }
 
 int OptionButton::get_item_id(int p_idx) const {
+  if (p_idx == NONE_SELECTED) {
+    return NONE_SELECTED;
+  }
+
 	return popup->get_item_id(p_idx);
 }
 
@@ -318,10 +322,6 @@ int OptionButton::get_selected() const {
 }
 
 int OptionButton::get_selected_id() const {
-	int idx = get_selected();
-	if (idx < 0) {
-		return 0;
-	}
 	return get_item_id(current);
 }
 
