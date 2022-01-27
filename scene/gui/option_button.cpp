@@ -333,6 +333,9 @@ Variant OptionButton::get_selected_metadata() const {
 
 void OptionButton::remove_item(int p_idx) {
 	popup->remove_item(p_idx);
+  if (current == p_idx) {
+    _select(NONE_SELECTED);
+  }
 }
 
 PopupMenu *OptionButton::get_popup() const {
