@@ -281,7 +281,9 @@ void OptionButton::_select(int p_which, bool p_emit) {
       popup->set_item_checked(i, false);
     }
 
+    current = NONE_SELECTED;
     set_text("");
+    set_icon(NULL);
   } 
   else {
     ERR_FAIL_INDEX(p_which, popup->get_item_count());
