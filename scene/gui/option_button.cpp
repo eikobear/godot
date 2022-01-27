@@ -301,7 +301,7 @@ void OptionButton::_select(int p_which, bool p_emit) {
 }
 
 void OptionButton::_select_int(int p_which) {
-	if (p_which < 0 || p_which >= popup->get_item_count()) {
+	if (p_which < NONE_SELECTED || p_which >= popup->get_item_count()) {
 		return;
 	}
 	_select(p_which, false);
